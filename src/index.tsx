@@ -2,9 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { store } from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
+import { applyMiddleware, createStore, Store } from '@reduxjs/toolkit';
+import reducer from './store/reducer';
+import thunk from 'redux-thunk';
+
+const store: Store<CatState, CatAction> & {
+  dispatch: DispatchType,
+} = createStore(reducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <React.StrictMode>
